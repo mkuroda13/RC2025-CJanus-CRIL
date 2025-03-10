@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"me.carina/util"
+	"github.com/mkuroda13/RC2025-CJanus-CRIL/util"
 )
 
 var rev bool = false

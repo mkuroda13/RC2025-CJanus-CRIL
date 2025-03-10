@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"me.carina/util"
+	"github.com/mkuroda13/RC2025-CJanus-CRIL/util"
 )
 
 type pc struct {

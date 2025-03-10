@@ -1,0 +1,83 @@
+begin main
+indent 0
+set #agent1 int M[1]
+set #agent2 int M[2]
+set #seats int M[0]
+seats += 3
+call $0.0, $0.1
+unset #seats int M[0]
+unset #agent1 int M[1]
+unset #agent2 int M[2]
+unindent 0
+end main
+
+begin $0.0
+indent 0
+set $seats:1 int seats
+set $agent1:1 int agent1
+call ag1
+unset $agent1:1 int agent1
+unset $seats:1 int seats
+unindent 0
+end $0.0
+
+begin $0.1
+indent 1
+set $seats:2 int seats
+set $agent2:2 int agent2
+call ag2
+unset $agent2:2 int agent2
+unset $seats:2 int seats
+unindent 1
+end $0.1
+
+begin ag1
+indent 1
+$tmp0 += agent1 == 0
+-> l0
+l0;l4 <- $tmp0
+$tmp0 -= agent1 == 0
+indent 0
+unindent 0
+-> l1
+l3 <-
+$tmp1 -= seats <= 0
+indent 1
+seats -= 1
+agent1 += 1
+unindent 1
+$tmp0 += agent1 == 0
+-> l4
+l1 <-
+$tmp1 += seats <= 0
+$tmp1 -> l2;l3
+l2 <-
+$tmp1 -= seats <= 0
+unindent 1
+end ag1
+
+begin ag2
+indent 2
+$tmp2 += agent2 == 0
+-> l5
+l5;l9 <- $tmp2
+$tmp2 -= agent2 == 0
+indent 0
+unindent 0
+-> l6
+l8 <-
+$tmp3 -= seats <= 0
+indent 1
+seats -= 1
+agent1 += 1
+unindent 1
+$tmp2 += agent2 == 0
+-> l9
+l6 <-
+$tmp3 += seats <= 0
+$tmp3 -> l7;l8
+l7 <-
+$tmp3 -= seats <= 0
+unindent 2
+end ag2
+

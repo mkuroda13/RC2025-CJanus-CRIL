@@ -1,0 +1,39 @@
+begin main
+indent 0
+set #x int M[0]
+set #y int M[1]
+call $0.0, $0.1
+unset #x int M[0]
+unset #y int M[1]
+unindent 0
+end main
+
+begin $0.0
+indent 0
+$tmp0 += x == 0
+$tmp0 -> l0;l1
+l0 <-
+$tmp0 -= x == 0
+indent 0
+y += 1
+unindent 0
+$tmp1 += x > 1
+-> l2
+l1 <-
+$tmp0 -= x == 0
+indent 1
+x += 1
+unindent 1
+$tmp1 += x > 1
+-> l3
+l2;l3 <- $tmp1
+$tmp1 -= x > 1
+unindent 0
+end $0.0
+
+begin $0.1
+indent 1
+x += 1
+unindent 1
+end $0.1
+

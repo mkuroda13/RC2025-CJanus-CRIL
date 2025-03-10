@@ -1,0 +1,203 @@
+begin $1.0.0.1
+indent 1
+$n += k
+$tmp4 += n == k
+-> l8
+l8;l12 <- $tmp4
+$tmp4 -= n == k
+indent 0
+n += k
+unindent 0
+-> l9
+l11 <-
+$tmp18 -= n >= max
+indent 1
+V plock
+indent 0
+$tmp5 += maxrt - 1
+$tmp6 += p[n] * $tmp5
+$t += $tmp6
+$tmp6 -= p[n] * $tmp5
+$tmp5 -= maxrt - 1
+p[n] += t
+$tmp7 += maxrt - 1
+$tmp8 += p[n] * $tmp7
+$tmp9 += $tmp8 / maxrt
+$t -= $tmp9
+$tmp9 -= $tmp8 / maxrt
+$tmp8 -= p[n] * $tmp7
+$tmp7 -= maxrt - 1
+unindent 0
+p[n] += k
+P plock
+$tmp10 += maxrt / k
+$tmp11 += $tmp10 + 1
+$tmp12 += $tmp11 * k
+$tmp13 += n == $tmp12
+$tmp13 -> l13;l14
+l13 <-
+$tmp13 -= n == $tmp12
+$tmp12 -= $tmp11 * k
+$tmp11 -= $tmp10 + 1
+$tmp10 -= maxrt / k
+indent 1
+V nextlock
+unindent 1
+$tmp14 += maxrt / k
+$tmp15 += $tmp14 + 1
+$tmp16 += $tmp15 * k
+$tmp17 += n == $tmp16
+-> l15
+l14 <-
+$tmp13 -= n == $tmp12
+$tmp12 -= $tmp11 * k
+$tmp11 -= $tmp10 + 1
+$tmp10 -= maxrt / k
+indent 2
+unindent 2
+$tmp14 += maxrt / k
+$tmp15 += $tmp14 + 1
+$tmp16 += $tmp15 * k
+$tmp17 += n == $tmp16
+-> l16
+l15;l16 <- $tmp17
+$tmp17 -= n == $tmp16
+$tmp16 -= $tmp15 * k
+$tmp15 -= $tmp14 + 1
+$tmp14 -= maxrt / k
+unindent 1
+$tmp4 += n == k
+-> l12
+l9 <-
+$tmp18 += n >= max
+$tmp18 -> l10;l11
+l10 <-
+$tmp18 -= n >= max
+$tmp19 += max - 1
+$tmp20 += $tmp19 / k
+$tmp21 += $tmp20 * k
+$tmp22 += $tmp21 + k
+$n -= $tmp22
+$tmp22 -= $tmp21 + k
+$tmp21 -= $tmp20 * k
+$tmp20 -= $tmp19 / k
+$tmp19 -= max - 1
+unindent 1
+end $1.0.0.1
+
+begin main
+indent 0
+set #p int[] M[0]
+set #max int M[100]
+set #maxrt int M[101]
+set #nextlock sync M[102]
+set #plock sync M[103]
+max += 100
+maxrt += 10
+indent 0
+$k += 2
+set $k:1 int k
+set $p:1 int[] p
+set $nextlock:1 sync nextlock
+set $max:1 int max
+set $maxrt:1 int maxrt
+set $plock:1 sync plock
+call sieve
+unset $plock:1 sync plock
+unset $maxrt:1 int maxrt
+unset $max:1 int max
+unset $nextlock:1 sync nextlock
+unset $p:1 int[] p
+unset $k:1 int k
+$k -= 2
+unindent 0
+unset #p int[] M[0]
+unset #max int M[100]
+unset #maxrt int M[101]
+unset #nextlock sync M[102]
+unset #plock sync M[103]
+unindent 0
+end main
+
+begin sieve
+indent 1
+$tmp0 += maxrt >= k
+$tmp0 -> l0;l1
+l0 <-
+$tmp0 -= maxrt >= k
+indent 0
+$tmp1 += p[k] == 0
+$tmp1 -> l4;l5
+l4 <-
+$tmp1 -= p[k] == 0
+indent 0
+call $1.0.0.0, $1.0.0.1
+unindent 0
+$tmp25 += p[k] == 0
+-> l6
+l5 <-
+$tmp1 -= p[k] == 0
+indent 1
+$tmp23 += k + 1
+$nk += $tmp23
+$tmp23 -= k + 1
+set $k:1 int nk
+set $p:1 int[] p
+set $nextlock:1 sync nextlock
+set $max:1 int max
+set $maxrt:1 int maxrt
+set $plock:1 sync plock
+call sieve
+unset $plock:1 sync plock
+unset $maxrt:1 int maxrt
+unset $max:1 int max
+unset $nextlock:1 sync nextlock
+unset $p:1 int[] p
+unset $k:1 int nk
+$tmp24 += k + 1
+$nk -= $tmp24
+$tmp24 -= k + 1
+unindent 1
+$tmp25 += p[k] == 0
+-> l7
+l6;l7 <- $tmp25
+$tmp25 -= p[k] == 0
+unindent 0
+$tmp26 += maxrt >= k
+-> l2
+l1 <-
+$tmp0 -= maxrt >= k
+indent 1
+unindent 1
+$tmp26 += maxrt >= k
+-> l3
+l2;l3 <- $tmp26
+$tmp26 -= maxrt >= k
+unindent 1
+end sieve
+
+begin $1.0.0.0
+indent 0
+$tmp2 += k + 1
+$nk += $tmp2
+$tmp2 -= k + 1
+P nextlock
+set $k:1 int nk
+set $p:1 int[] p
+set $nextlock:1 sync nextlock
+set $max:1 int max
+set $maxrt:1 int maxrt
+set $plock:1 sync plock
+call sieve
+unset $plock:1 sync plock
+unset $maxrt:1 int maxrt
+unset $max:1 int max
+unset $nextlock:1 sync nextlock
+unset $p:1 int[] p
+unset $k:1 int nk
+$tmp3 += k + 1
+$nk -= $tmp3
+$tmp3 -= k + 1
+unindent 0
+end $1.0.0.0
+

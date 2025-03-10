@@ -15,4 +15,6 @@ require (
 	golang.org/x/text v0.21.0 // indirect
 )
 
+replace github.com/mkuroda13/RC2025-CJanus-CRIL/util => ../util
+
 require github.com/mkuroda13/RC2025-CJanus-CRIL/util v0.0.0-00010101000000-000000000000
